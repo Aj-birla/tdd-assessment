@@ -16,5 +16,14 @@ RSpec.describe Utilities::StringCalculator do
         expect(result).to eq(0)
       end
     end
+
+    context "when input is non empty string" do
+      context "when string contains only signle number" do
+        it "returns the same number as integer value" do
+          result = described_class.add('4')
+          expect(result).to eq(4)
+        end
+      end
+    end
   end
 end
