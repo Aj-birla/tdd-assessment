@@ -9,5 +9,12 @@ RSpec.describe Utilities::StringCalculator do
       method = described_class.method(:add)
       expect(method.arity).to eq(1)
     end
+
+    context 'when input is an empty string' do
+      it 'returns 0' do
+        result = described_class.add('')
+        expect(result).to eq(0)
+      end
+    end
   end
 end
