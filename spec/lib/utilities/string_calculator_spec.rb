@@ -6,47 +6,42 @@ RSpec.describe Utilities::StringCalculator do
     end
 
     it 'expects exactly one argument' do
-      method = described_class.method(:add)
-      expect(method.arity).to eq(1)
+      expect(described_class.method(:add).arity).to eq(1)
     end
 
     context 'when input is an empty string' do
       it 'returns 0' do
-        result = described_class.add('')
-        expect(result).to eq(0)
+        expect(described_class.add('')).to eq(0)
       end
     end
 
-    context "when input is non empty string" do
-      context "when string contains only signle number" do
-        it "returns the same number as integer value" do
-          result = described_class.add('4')
-          expect(result).to eq(4)
+    context 'when input is a non-empty string' do
+      context 'and contains a single number' do
+        it 'returns the number as an integer' do
+          expect(described_class.add('4')).to eq(4)
         end
       end
 
-      context "when string contains multiple number by comma separated" do
-        it "returns sum of all comma separated numbers" do
-          result = described_class.add('1,4,5')
-          expect(result).to eq(10)
+      context 'and contains multiple comma-separated numbers' do
+        it 'returns the sum of all numbers' do
+          expect(described_class.add('1,4,5')).to eq(10)
         end
       end
 
-      context "when string contains newline delimiter with numbers" do
-        it "handles newlines b/w nums and returns correct sum of all numbers" do
-          result = described_class.add("1\n2,4,5")
-          expect(result).to eq(12)
+      context 'and contains newline delimiters' do
+        it 'handles newlines and returns the correct sum' do
+          expect(described_class.add("1\n2,4,5")).to eq(12)
         end
       end
 
-      context "when string contains custom delimiters" do
-        it 'returns the correct sum by ignoring custom delimiters' do
+      context 'and contains custom delimiters' do
+        it 'returns the correct sum using the custom delimiter' do
           expect(described_class.add("//;\n1;2")).to eq(3)
         end
       end
 
-      context "When string contains negative numbers" do
-        it "raises an error for negative numbers" do
+      context 'and contains negative numbers' do
+        it 'raises an error listing all negative numbers' do
           expect { described_class.add("1,-2,3,-4") }.to raise_error("negative numbers not allowed -2,-4")
         end
       end
