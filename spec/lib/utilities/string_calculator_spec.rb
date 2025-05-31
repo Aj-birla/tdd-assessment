@@ -25,10 +25,17 @@ RSpec.describe Utilities::StringCalculator do
         end
       end
 
-      context "when string cotains multiple number by comma separated" do
+      context "when string contains multiple number by comma separated" do
         it "returns sum of all comma separated numbers" do
           result = described_class.add('1,4,5')
           expect(result).to eq(10)
+        end
+      end
+
+      context "when string contains newline delimiter with numbers" do
+        it "handles newlines b/w nums and returns correct sum of all numbers" do
+          result = described_class.add("1\n2,4,5")
+          expect(result).to eq(12)
         end
       end
     end
