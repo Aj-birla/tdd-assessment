@@ -11,6 +11,11 @@ module Utilities
 
       numbers_str.gsub!("\n", delimiter)
       numbers = numbers_str.split(delimiter).map(&:to_i)
+      negatives = numbers.select { |n| n < 0 }
+      if negatives.any?
+        raise "negative numbers not allowed #{negatives.join(',')}"
+      end
+
       numbers.sum
     end
   end
