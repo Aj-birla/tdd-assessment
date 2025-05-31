@@ -24,6 +24,13 @@ RSpec.describe Utilities::StringCalculator do
           expect(result).to eq(4)
         end
       end
+
+      context "when string cotains multiple number by comma separated" do
+        it "returns sum of all comma separated numbers" do
+          result = described_class.add('1,4,5')
+          expect(result).to eq(10)
+        end
+      end
     end
   end
 end
