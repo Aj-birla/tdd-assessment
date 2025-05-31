@@ -38,6 +38,12 @@ RSpec.describe Utilities::StringCalculator do
           expect(result).to eq(12)
         end
       end
+
+      context "when string contains custom delimiters" do
+        it 'returns the correct sum by ignoring custom delimiters' do
+          expect(described_class.add("//;\n1;2")).to eq(3)
+        end
+      end
     end
   end
 end
